@@ -20,7 +20,7 @@ class BuildRvo23DExt(_build_ext):
             if os.name == 'nt':
                 
                 # Use msvc 64 bit
-                subprocess.check_call(['cmake', '-G', 'Visual Studio 14 2015 Win64', '../..'],
+                subprocess.check_call(['cmake', '-G', 'Visual Studio 17 2022', '-A', ' x64', '../..'],
                                       cwd=build_dir)
             else:
                 subprocess.check_call(['cmake', '../..', '-DCMAKE_CXX_FLAGS=-fPIC'],
