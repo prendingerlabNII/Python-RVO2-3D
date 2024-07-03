@@ -117,9 +117,10 @@ namespace RVO {
 		 * \param   radius        The radius of this agent. Must be non-negative.
 		 * \param   maxSpeed      The maximum speed of this agent. Must be non-negative.
 		 * \param   velocity      The initial three-dimensional linear velocity of this agent (optional).
+		 * \param   isCooperative If the agent will reciprocally avoid others or not.
 		 * \return  The number of the agent.
 		 */
-		RVO_API size_t addAgent(const Vector3 &position, float neighborDist, size_t maxNeighbors, float timeHorizon, float radius, float maxSpeed, const Vector3 &velocity = Vector3());
+		RVO_API size_t addAgent(const Vector3 &position, float neighborDist, size_t maxNeighbors, float timeHorizon, float radius, float maxSpeed, const Vector3 &velocity = Vector3(), bool isCooperative = true);
 
 		/**
 		 * \brief   Lets the simulator perform a simulation step and updates the three-dimensional position and three-dimensional velocity of each agent.

@@ -105,7 +105,7 @@ namespace RVO {
 	 */
 	void linearProgram4(const std::vector<Plane> &planes, size_t beginPlane, float radius, Vector3 &result);
 
-	Agent::Agent(RVOSimulator *sim) : sim_(sim), id_(0), maxNeighbors_(0), maxSpeed_(0.0f), neighborDist_(0.0f), radius_(0.0f), timeHorizon_(0.0f) { }
+	Agent::Agent(RVOSimulator *sim) : sim_(sim), id_(0), maxNeighbors_(0), maxSpeed_(0.0f), neighborDist_(0.0f), radius_(0.0f), timeHorizon_(0.0f), isCooperative_(true) { }
 
 	void Agent::computeNeighbors()
 	{
@@ -174,7 +174,10 @@ namespace RVO {
 				u = (combinedRadius * invTimeStep - wLength) * unitW;
 			}
 
-			plane.point = velocity_ + 0.5f * u;
+			if (other->isCooperative_)
+				plane.point = velocity_ + 0.5f * u;
+			else
+				plane.point = velocity_ + 1.0f * u;
 			orcaPlanes_.push_back(plane);
 		}
 

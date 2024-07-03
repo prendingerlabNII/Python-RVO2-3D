@@ -56,6 +56,7 @@ namespace RVO {
 		defaultAgent_->radius_ = radius;
 		defaultAgent_->timeHorizon_ = timeHorizon;
 		defaultAgent_->velocity_ = velocity;
+		defaultAgent_->isCooperative_ = false;
 	}
 
 	RVOSimulator::~RVOSimulator()
@@ -115,6 +116,7 @@ namespace RVO {
 		agent->radius_ = defaultAgent_->radius_;
 		agent->timeHorizon_ = defaultAgent_->timeHorizon_;
 		agent->velocity_ = defaultAgent_->velocity_;
+		agent->isCooperative_ = defaultAgent_->isCooperative_;
 
 		agent->id_ = agents_.size();
 
@@ -123,7 +125,7 @@ namespace RVO {
 		return agents_.size() - 1;
 	}
 
-	size_t RVOSimulator::addAgent(const Vector3 &position, float neighborDist, size_t maxNeighbors, float timeHorizon, float radius, float maxSpeed, const Vector3 &velocity)
+	size_t RVOSimulator::addAgent(const Vector3 &position, float neighborDist, size_t maxNeighbors, float timeHorizon, float radius, float maxSpeed, const Vector3 &velocity, bool isCooperative)
 	{
 		Agent *agent = new Agent(this);
 
@@ -134,6 +136,7 @@ namespace RVO {
 		agent->radius_ = radius;
 		agent->timeHorizon_ = timeHorizon;
 		agent->velocity_ = velocity;
+		agent->isCooperative_ = isCooperative;
 
 		agent->id_ = agents_.size();
 

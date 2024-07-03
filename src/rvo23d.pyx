@@ -32,7 +32,8 @@ cdef extern from "RVOSimulator.h" namespace "RVO":
         size_t addAgent(const Vector3 & position, float neighborDist,
                         size_t maxNeighbors, float timeHorizon,
                         float radius, float maxSpeed,
-                        const Vector3 & velocity)
+                        const Vector3 & velocity,
+                        bool isCooperative)
         void doStep() nogil
         size_t getAgentAgentNeighbor(size_t agentNo, size_t neighborNo) const
         size_t getAgentMaxNeighbors(size_t agentNo) const
@@ -81,7 +82,7 @@ cdef class PyRVOSimulator:
     def addAgent(self, tuple pos, neighborDist=None,
                  maxNeighbors=None, timeHorizon=None,
                  radius=None, maxSpeed=None,
-                 velocity=None):
+                 velocity=None, isCooperative=True):
         cdef Vector3 c_pos = Vector3(pos[0], pos[1], pos[2])
         cdef Vector3 c_velocity
 
@@ -95,7 +96,7 @@ cdef class PyRVOSimulator:
             agent_nr = self.thisptr.addAgent(c_pos, neighborDist,
                                              maxNeighbors, timeHorizon,
                                              radius, maxSpeed,
-                                             c_velocity)
+                                             c_velocity, isCooperative)
 
         if agent_nr == RVO_ERROR:
             raise RuntimeError('Error adding agent to RVO simulation')
