@@ -5,7 +5,18 @@ build/
 *.o
 *.a
 *.out
+*.so
+*.dll
+*.dylib
+*.lib
 *.exe
+
+# VS build
+Debug/
+Release/
+x64/
+x86/
+*.vcxproj.user
 
 # Example binaries
 examples/Sphere
